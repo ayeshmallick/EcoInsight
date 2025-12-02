@@ -64,18 +64,6 @@ HTML + CSS (custom UI)
 
 Django template system
 
-📂 Project Structure
-EcoInsight/
- ├── Eco/                    # Main Django project
- ├── core/                   # App containing articles & views
- │   ├── templates/
- │   ├── static/core/css/style.css
- │   ├── context_processors.py
- │   ├── models.py
- │   ├── views.py
- │   ├── urls.py
- ├── media/                  # Uploaded article images
- ├── manage.py
  
 ⚙️ Installation
 1. Clone the repository
