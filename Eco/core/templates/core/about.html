@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}About — EcoInsight{% endblock %}
+
+{% block content %}
+<div style="max-width:880px;margin:28px auto;padding:18px;">
+  <h1>About EcoInsight</h1>
+  <p class="lead">
+    EcoInsight Media is a modern, student‑developed news platform dedicated to covering sustainability, renewable energy, climate innovation, and community‑driven environmental projects. The goal of the site is to make sustainability knowledge accessible through concise, credible, and visually engaging articles.
+
+This project was built as part of an academic course assignment and showcases practical Django web‑development concepts. It includes features such as user authentication, role‑based article management for editors, dynamic search with filters, visit‑tracking analytics, and clean UI/UX enhancements. EcoInsight demonstrates how Django can be used to create a full content‑driven website, from article creation and media handling to responsive design and user interaction.
+
+Beyond fulfilling course requirements, the platform is designed to resemble a real, functioning digital publication complete with categories, tags, author profiles, and structured article layouts, making it suitable as both a learning project and a portfolio piece.
+
+
+  </p>
+
+  <section style="margin-top:18px;">
+    <h3>Our Mission</h3>
+    <p>Our mission is to share concise, well‑researched articles that simplify complex sustainability topics and empower readers to take meaningful, practical steps toward reducing their environmental impact. Through accessible reporting, real‑world examples, and actionable insights, EcoInsight aims to inspire informed decision‑making and support a more sustainable future for communities everywhere.</p>
+  </section>
+
+  <section style="margin-top:18px;">
+    <h3>Quick Links</h3>
+    <ul>
+      <li><a href="{% url 'index' %}">Home</a></li>
+      <li><a href="{% url 'team' %}">Team</a></li>
+      <li><a href="{% url 'contact' %}">Contact</a></li>
+    </ul>
+  </section>
+</div>
+{% endblock %}
