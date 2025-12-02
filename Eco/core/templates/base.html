@@ -1,0 +1,89 @@
+{% load static %}
+
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}EcoInsight Media{% endblock %}</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="{% url 'index' %}">
+        <div class="logo">E</div>
+        <div>EcoInsight</div>
+      </a>
+
+      <nav class="nav">
+        <form action="{% url 'search' %}"
+              method="get"
+              style="display:inline-flex;align-items:center;gap:8px;">
+          <input name="q" class="search" placeholder="Search articles..." value="{{ request.GET.q|default:'' }}" />
+
+          {% if filter_categories %}
+            <select name="category" aria-label="category filter">
+              <option value="">Category</option>
+              {% for c in filter_categories %}
+                <option value="{{ c }}" {% if c == request.GET.category %}selected{% endif %}>{{ c }}</option>
+              {% endfor %}
+            </select>
+          {% endif %}
+
+          {% if filter_tags %}
+            <select name="tag" aria-label="tag filter">
+              <option value="">Tag</option>
+              {% for t in filter_tags %}
+                <option value="{{ t }}" {% if t == request.GET.tag %}selected{% endif %}>{{ t }}</option>
+              {% endfor %}
+            </select>
+          {% endif %}
+
+          {% if filter_authors %}
+            <select name="author" aria-label="author filter">
+              <option value="">Author</option>
+              {% for id, username in filter_authors %}
+                {# compare request.GET.author (string) to id|stringformat:"s" #}
+                <option value="{{ id }}" {% if request.GET.author == id|stringformat:"s" %}selected{% endif %}>{{ username }}</option>
+              {% endfor %}
+            </select>
+          {% endif %}
+
+          <button type="submit" class="btn-ghost" style="padding:6px 10px;">Search</button>
+        </form>
+
+        {% if user.is_authenticated %}
+          <span class="kv">Hi {{ user.username }}</span>
+          {% if user.is_editor or user.is_admin %}
+            <a class="btn-primary" href="{% url 'article_add' %}">New article</a>
+          {% endif %}
+
+          <form method="post" action="{% url 'logout' %}" style="display:inline">
+            {% csrf_token %}
+            <button type="submit" class="btn-ghost" style="background:transparent;border:1px solid rgba(11,17,32,0.06);">
+              Logout
+            </button>
+          </form>
+        {% else %}
+          <a href="{% url 'login' %}">Login</a>
+          <a class="btn-primary" href="{% url 'signup' %}">Sign up</a>
+        {% endif %}
+      </nav>  {# end nav #}
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="site-footer">
+    EcoInsight Media — curated articles on sustainability
+      <div style="margin-top:8px;">
+        <a href="{% url 'about' %}">About</a> •
+        <a href="{% url 'team' %}">Team</a> •
+        <a href="{% url 'contact' %}">Contact</a>
+      </div>
+  </footer>
+</body>
+</html>

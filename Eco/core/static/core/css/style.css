@@ -1,0 +1,226 @@
+/* ------------------------------------------------------
+   RESET & BASE THEME
+------------------------------------------------------ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #f4f7fb;
+    --card-bg: #ffffffcc;
+    --primary: #0f62fe;
+    --primary-dark: #0043ce;
+    --text-dark: #0b1120;
+    --text-light: #64748b;
+    --radius: 14px;
+    --shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    --transition: 0.2s ease;
+}
+
+body {
+    background: var(--bg);
+    font-family: "Inter", sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+/* ------------------------------------------------------
+   HEADER / NAVBAR
+------------------------------------------------------ */
+.site-header {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(14px);
+    box-shadow: var(--shadow);
+    padding: 14px 0;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 22px;
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+.logo {
+    background: var(--primary);
+    color: white;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* SEARCH BAR */
+.search {
+    padding: 10px 14px;
+    border-radius: var(--radius);
+    border: 1px solid #d0d7e2;
+    font-size: 14px;
+    width: 260px;
+    transition: var(--transition);
+}
+
+.search:focus {
+    border-color: var(--primary);
+    outline: none;
+}
+
+/* BUTTONS */
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    padding: 8px 18px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+}
+
+.btn-ghost {
+    padding: 8px 18px;
+    background: transparent;
+    border-radius: var(--radius);
+    border: 1px solid #cfd6e3;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-ghost:hover {
+    background: #ffffffaa;
+}
+
+/* ------------------------------------------------------
+   HERO SECTION
+------------------------------------------------------ */
+
+.hero {
+    margin: 40px 0;
+    padding: 40px 30px;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, #e8f0ff, #ffffff);
+    box-shadow: var(--shadow);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.hero h1 {
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.tag {
+    background: var(--primary);
+    color: white;
+    padding: 6px 12px;
+    border-radius: var(--radius);
+    font-size: 12px;
+}
+
+/* ------------------------------------------------------
+   ARTICLE GRID
+------------------------------------------------------ */
+
+.grid {
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 26px;
+}
+
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+}
+
+.thumb {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.body {
+    padding: 18px;
+}
+
+.title a {
+    color: var(--text-dark);
+    font-size: 20px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.title a:hover {
+    color: var(--primary);
+}
+
+.meta {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 8px;
+}
+
+.tags .tag {
+    margin-right: 6px;
+}
+
+/* ------------------------------------------------------
+   ARTICLE DETAIL PAGE
+------------------------------------------------------ */
+
+.article-content {
+    max-width: 750px;
+    margin: 40px auto;
+    background: white;
+    padding: 32px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+.article-content h1 {
+    margin-bottom: 18px;
+}
+
+.article-content p {
+    margin: 18px 0;
+    font-size: 17px;
+}
+
+/* ------------------------------------------------------
+   FOOTER
+------------------------------------------------------ */
+
+footer {
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 60px;
+    color: var(--text-light);
+}

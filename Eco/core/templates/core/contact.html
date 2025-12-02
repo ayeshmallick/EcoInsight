@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Contact — EcoInsight{% endblock %}
+
+{% block content %}
+<div style="max-width:720px;margin:28px auto;padding:18px;">
+  <h1>Contact Us</h1>
+  <p>If you have questions or want to provide feedback, send us a message using the form below.</p>
+
+  {% if messages %}
+    {% for msg in messages %}
+      <div class="flash">{{ msg }}</div>
+    {% endfor %}
+  {% endif %}
+
+  <form action="{% url 'contact' %}" method="post" style="margin-top:18px;">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div style="margin-bottom:10px;">
+      {{ form.name.label_tag }}<br>
+      {{ form.name }}
+      {{ form.name.errors }}
+    </div>
+
+    <div style="margin-bottom:10px;">
+      {{ form.email.label_tag }}<br>
+      {{ form.email }}
+      {{ form.email.errors }}
+    </div>
+
+    <div style="margin-bottom:10px;">
+      {{ form.subject.label_tag }}<br>
+      {{ form.subject }}
+      {{ form.subject.errors }}
+    </div>
+
+    <div style="margin-bottom:10px;">
+      {{ form.message.label_tag }}<br>
+      {{ form.message }}
+      {{ form.message.errors }}
+    </div>
+
+    <button class="btn-primary" type="submit">Send message</button>
+  </form>
+</div>
+{% endblock %}

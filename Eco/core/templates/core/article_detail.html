@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }} — EcoInsight{% endblock %}
+{% block content %}
+<article class="card">
+  <div class="meta">{{ article.publish_date|date:"M j, Y" }} • {{ article.author }}</div>
+  <h1>{{ article.title }}</h1>
+
+  {% if article.cover_image %}
+    <img src="{{ article.cover_image.url }}" class="thumb" alt="cover">
+  {% endif %}
+
+  <div class="article-content">{{ article.content|linebreaks }}</div>
+
+  {% if article.attachment %}
+    <div style="margin-top:20px;">
+      <a class="btn-ghost" href="{{ article.attachment.url }}">Download attachment</a>
+    </div>
+  {% endif %}
+
+  {% if user.is_authenticated %}
+    {% if user.is_editor or user.is_admin %}
+      <div class="article-actions">
+        <a class="btn-primary" href="{% url 'article_edit' slug=article.slug %}">Edit</a>
+      </div>
+    {% endif %}
+  {% endif %}
+</article>
+{% endblock %}

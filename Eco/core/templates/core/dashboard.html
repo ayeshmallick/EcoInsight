@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — EcoInsight{% endblock %}
+{% block content %}
+<div class="form-card" style="max-width:1000px;margin:24px auto;padding:20px;">
+  <h2>Your Dashboard</h2>
+
+  <section style="display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;">
+    <div style="flex:1;min-width:240px">
+      <div class="card" style="padding:16px;">
+        <h3>Total visits</h3>
+        <p style="font-size:28px;margin:6px 0;">{{ visit_total|default:0 }}</p>
+        <p class="kv">Last seen: {{ visit_last_seen|date:"M j, Y H:i" }}</p>
+      </div>
+    </div>
+
+    <div style="flex:2;min-width:320px">
+      <div class="card" style="padding:16px;">
+        <h3>Recently viewed</h3>
+        {% if recently_viewed %}
+          <ul>
+            {% for a in recently_viewed %}
+              <li><a href="{% url 'article_detail' slug=a.slug %}">{{ a.title }}</a> • {{ a.publish_date|date:"M j, Y" }}</li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="kv">No recently viewed articles.</p>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section style="margin-top:20px;">
+    <h3>Visits in last 7 days</h3>
+    <div class="card" style="padding:12px;">
+      {% if last_week_visits %}
+        <ul>
+          {% for v in last_week_visits %}
+            <li>{{ v.date }} — {{ v.count }} visit{{ v.count|pluralize }}</li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="kv">No activity in the last 7 days.</p>
+      {% endif %}
+    </div>
+  </section>
+</div>
+{% endblock %}
